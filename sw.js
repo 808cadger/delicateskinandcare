@@ -45,14 +45,38 @@ self.addEventListener('activate', event => {
 // Fetch strategy:
 //   Non-GET (e.g. POST /api/analyze-skin) → never intercept, always hit the network
 //   /api/ routes → never intercept, always hit the network (live data, not cacheable)
-//   Everything else → cache-first with background revalidation, offline fallback for navigations
+//   Navigations (the HTML page itself) → network-first, cache is only a fallback for
+//     when offline. This is the one request type visitors need fresh on every deploy —
+//     cache-first here is what caused repeated "I don't see the update" reports, since a
+//     returning visitor would get the old page instantly from cache every single time.
+//   Everything else (images, icons, manifest) → cache-first, offline-friendly and rarely
+//     time-sensitive.
 self.addEventListener('fetch', event => {
   const { request } = event;
   if (request.method !== 'GET') return;
   if (new URL(request.url).pathname.startsWith('/api/')) return;
 
+  if (request.mode === 'navigate') {
+    event.respondWith(networkFirst(request));
+    return;
+  }
   event.respondWith(cacheFirstWithNetwork(request));
 });
+
+async function networkFirst(request) {
+  try {
+    const res = await fetch(request);
+    if (res.ok && res.type === 'basic') {
+      const cache = await caches.open(CACHE_VERSION);
+      await cache.put(request, res.clone());
+    }
+    return res;
+  } catch (_) {
+    const cached = await caches.match(request);
+    return cached || (await caches.match('./offline.html'))
+      || new Response('<h1>Delicate Skin & Care is offline</h1>', { headers: { 'Content-Type': 'text/html' } });
+  }
+}
 
 async function cacheFirstWithNetwork(request) {
   const cached = await caches.match(request);
@@ -74,10 +98,7 @@ async function cacheFirstWithNetwork(request) {
     }
     return res;
   } catch (_) {
-    if (request.mode === 'navigate') {
-      const fallback = await caches.match('./offline.html');
-      return fallback || new Response('<h1>Delicate Skin & Care is offline</h1>', { headers: { 'Content-Type': 'text/html' } });
-    }
+    // Never a navigation here — those are routed to networkFirst() above.
     return new Response('', { status: 408 });
   }
 }
