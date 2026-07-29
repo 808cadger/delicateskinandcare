@@ -49,8 +49,11 @@ Claude and back in memory only.
 4. Redeploy after adding the env var so the function picks it up:
    `vercel --prod`.
 
-No `vercel.json` is needed — Vercel auto-detects the `api/` folder as serverless
-functions and serves everything else (`index.html`, the assets folder) as static files.
+Vercel auto-detects the `api/` folder as serverless functions and serves everything
+else (`index.html`, the assets folder) as static files. `vercel.json` pins
+`outputDirectory` to `.` (the repo root) — without it, Vercel sees the `build` script
+(added for the Capacitor Android app, see below) and assumes a framework build with
+output in `public/`, which doesn't exist here and breaks the deploy.
 
 ## Local development
 
