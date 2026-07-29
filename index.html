@@ -390,6 +390,15 @@
     .skin-avatar-ring{ width:clamp(190px,58vw,240px); height:clamp(190px,58vw,240px); }
     .skin-avatar-photo{ font-size:clamp(3.1rem,13vw,4rem); }
   }
+  .skin-camera-video{
+    width:100%; height:100%; border-radius:50%; object-fit:cover; display:block;
+    background:#000; transform:scaleX(-1);
+  }
+  .skin-camera-countdown{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:clamp(2.4rem,10vw,3.4rem); font-weight:700; color:#fff;
+    text-shadow:0 2px 10px rgba(0,0,0,0.55); pointer-events:none;
+  }
   .skin-concern-grid{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:8px;}
   .skin-concern-grid button{
     background:var(--white); border:1.5px solid var(--mauve); color:var(--plum);
@@ -750,6 +759,19 @@
       <button class="btn-skincheck" id="skinSkipBtn" style="margin-top:14px;">Prefer not to share a photo? Quick quiz instead →</button>
     </div>
 
+    <div id="skinStepCamera" style="display:none;">
+      <div class="avatar-ring skin-avatar-ring" style="margin:0 auto 18px;">
+        <div class="avatar-inner" style="position:relative; overflow:hidden;">
+          <video id="skinCameraVideo" class="skin-camera-video" autoplay playsinline muted></video>
+          <div class="skin-camera-countdown" id="skinCameraCountdown"></div>
+        </div>
+      </div>
+      <h3 id="skinCameraStatus">Get ready…</h3>
+      <p class="desc" style="color:#736a70;">Look at the camera — we'll snap a photo automatically.</p>
+      <button class="btn-skincheck" id="skinCameraCancelBtn" style="margin-top:14px;">✕ Cancel</button>
+      <canvas id="skinCameraCanvas" style="display:none;"></canvas>
+    </div>
+
     <div id="skinStepAnalyzing" style="display:none;">
       <div class="avatar-ring skin-avatar-ring" style="margin:0 auto 14px;">
         <div class="avatar-inner">
@@ -997,6 +1019,7 @@
   function closeModal(overlay) {
     overlay.classList.remove('open');
     document.body.style.overflow = '';
+    if (overlay.id === 'skin-check-modal') stopSkinCamera();
   }
 
   document.querySelectorAll('[data-modal]').forEach(btn => {
@@ -1020,12 +1043,84 @@
   const skinAvatarPhotos = ['skinAvatarPhoto', 'skinAvatarPhoto2', 'skinAvatarPhoto3', 'skinAvatarPhotoAnalyzing'].map(id => document.getElementById(id));
   let lastSelfieDataUrl = null;
 
+  const skinStepCamera = document.getElementById('skinStepCamera');
+  const skinCameraVideo = document.getElementById('skinCameraVideo');
+  const skinCameraCountdown = document.getElementById('skinCameraCountdown');
+  const skinCameraCanvas = document.getElementById('skinCameraCanvas');
+  const skinCameraStatus = document.getElementById('skinCameraStatus');
+  let skinCameraStream = null;
+  let skinCameraCountdownTimer = null;
+
   function showSkinStep(step) {
     skinStepCapture.style.display = step === 'capture' ? 'block' : 'none';
+    skinStepCamera.style.display = step === 'camera' ? 'block' : 'none';
     skinStepConcern.style.display = step === 'concern' ? 'block' : 'none';
     skinStepTips.style.display = step === 'tips' ? 'block' : 'none';
     skinStepAnalyzing.style.display = step === 'analyzing' ? 'block' : 'none';
     skinStepError.style.display = step === 'error' ? 'block' : 'none';
+  }
+
+  // Releases the camera stream and cancels any pending countdown — must run
+  // whenever we leave the camera step, or the browser keeps the camera light on.
+  function stopSkinCamera() {
+    if (skinCameraCountdownTimer) {
+      clearInterval(skinCameraCountdownTimer);
+      skinCameraCountdownTimer = null;
+    }
+    if (skinCameraStream) {
+      skinCameraStream.getTracks().forEach(track => track.stop());
+      skinCameraStream = null;
+    }
+  }
+
+  // Live in-page camera with an auto-fire 3-second timer, so getting tips
+  // starts instantly instead of round-tripping through the OS camera app.
+  async function startSkinCamera() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      skinSelfieInput.click();
+      return;
+    }
+    showSkinStep('camera');
+    skinCameraStatus.textContent = 'Get ready…';
+    skinCameraCountdown.textContent = '';
+    try {
+      skinCameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
+    } catch (err) {
+      showSkinStep('capture');
+      skinSelfieInput.click();
+      return;
+    }
+    skinCameraVideo.srcObject = skinCameraStream;
+    try { await skinCameraVideo.play(); } catch (err) {}
+    runSkinCameraCountdown();
+  }
+
+  function runSkinCameraCountdown() {
+    let count = 3;
+    skinCameraStatus.textContent = 'Hold still…';
+    skinCameraCountdown.textContent = String(count);
+    skinCameraCountdownTimer = setInterval(() => {
+      count -= 1;
+      if (count > 0) {
+        skinCameraCountdown.textContent = String(count);
+      } else {
+        clearInterval(skinCameraCountdownTimer);
+        skinCameraCountdownTimer = null;
+        captureSkinCameraPhoto();
+      }
+    }, 1000);
+  }
+
+  function captureSkinCameraPhoto() {
+    const video = skinCameraVideo;
+    const width = video.videoWidth || 720;
+    const height = video.videoHeight || 720;
+    skinCameraCanvas.width = width;
+    skinCameraCanvas.height = height;
+    skinCameraCanvas.getContext('2d').drawImage(video, 0, 0, width, height);
+    const dataUrl = skinCameraCanvas.toDataURL('image/jpeg', 0.9);
+    stopSkinCamera();
+    useSelfieDataUrl(dataUrl);
   }
 
   function setSkinSecondaryAction(mode) {
@@ -1063,28 +1158,36 @@
   }
 
   const skinUploadInput = document.getElementById('skinUploadInput');
-  document.getElementById('skinTakeSelfieBtn').addEventListener('click', () => skinSelfieInput.click());
+  document.getElementById('skinTakeSelfieBtn').addEventListener('click', () => startSkinCamera());
   document.getElementById('skinUploadBtn').addEventListener('click', () => skinUploadInput.click());
   document.getElementById('skinSkipBtn').addEventListener('click', () => showSkinStep('concern'));
+  document.getElementById('skinCameraCancelBtn').addEventListener('click', () => {
+    stopSkinCamera();
+    showSkinStep('capture');
+  });
   document.getElementById('skinRetryBtn').addEventListener('click', () => {
     if (lastSelfieDataUrl) analyzeSelfie(lastSelfieDataUrl);
   });
   document.getElementById('skinFallbackBtn').addEventListener('click', () => showSkinStep('concern'));
 
+  // Shared by both the instant in-page camera capture and the gallery-upload
+  // fallback — resizes, previews, and kicks off analysis either way.
+  async function useSelfieDataUrl(dataUrl) {
+    const resized = await resizeImage(dataUrl, 1024);
+    skinAvatarPhotos.forEach(el => {
+      el.style.backgroundImage = `url(${resized})`;
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+      el.textContent = '';
+    });
+    lastSelfieDataUrl = resized;
+    analyzeSelfie(resized);
+  }
+
   function handleSelfieFile(file) {
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = async e => {
-      const resized = await resizeImage(e.target.result, 1024);
-      skinAvatarPhotos.forEach(el => {
-        el.style.backgroundImage = `url(${resized})`;
-        el.style.backgroundSize = 'cover';
-        el.style.backgroundPosition = 'center';
-        el.textContent = '';
-      });
-      lastSelfieDataUrl = resized;
-      analyzeSelfie(resized);
-    };
+    reader.onload = e => useSelfieDataUrl(e.target.result);
     reader.readAsDataURL(file);
   }
   skinSelfieInput.addEventListener('change', () => handleSelfieFile(skinSelfieInput.files[0]));
