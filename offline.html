@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're offline | Delicate Skin & Care</title>
+<style>
+  body{
+    margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+    font-family:'Inter', sans-serif; text-align:center; padding:24px;
+    background:#fbf7f5; color:#2a1a24;
+  }
+  .card{ max-width:360px; }
+  .mark{
+    width:64px; height:64px; margin:0 auto 20px; border-radius:50%;
+    background:linear-gradient(135deg,#572443,#8b3d6b);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Georgia',serif; font-weight:700; font-size:1.4rem;
+  }
+  h1{ font-family:'Georgia',serif; font-size:1.4rem; margin-bottom:10px; color:#3d1830; }
+  p{ color:#736a70; font-size:.95rem; line-height:1.5; margin-bottom:20px; }
+  button{
+    background:#572443; color:#fff; border:none; padding:12px 26px; border-radius:100px;
+    font-weight:600; font-size:.9rem; cursor:pointer;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="mark">DS</div>
+    <h1>You're offline</h1>
+    <p>It looks like you've lost your connection. Reconnect to browse services or get your free skin tips.</p>
+    <button onclick="location.reload()">Try Again</button>
+  </div>
+</body>
+</html>

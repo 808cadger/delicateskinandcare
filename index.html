@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Delicate Skin & Care | Mobile Esthetics — Southern California</title>
 <meta name="description" content="Delicate Skin & Care brings professional facials and esthetic services to you, anywhere in Southern California.">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#572443">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Delicate Skin">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -498,6 +505,7 @@
     nav ul li a:hover{color:var(--plum);}
     .menu-toggle{display:block;}
     .nav-actions .btn-primary{display:none;}
+    .nav-actions #installAppBtn{display:none !important;}
   }
 </style>
 </head>
@@ -519,6 +527,7 @@
       </ul>
     </nav>
     <div class="nav-actions">
+      <button class="btn btn-outline" id="installAppBtn" style="display:none;">⬇ Install App</button>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
       <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book Now</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
@@ -1256,6 +1265,33 @@
   });
 
   observeReveals();
+
+  // PWA: register service worker for offline support
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(err => console.error('SW registration failed:', err));
+    });
+  }
+
+  // PWA: "Install App" button — captures the browser's native install prompt
+  // instead of letting it fire unprompted, so we control when/how it's offered.
+  const installAppBtn = document.getElementById('installAppBtn');
+  let deferredInstallPrompt = null;
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    installAppBtn.style.display = 'inline-flex';
+  });
+  installAppBtn.addEventListener('click', async () => {
+    if (!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    installAppBtn.style.display = 'none';
+  });
+  window.addEventListener('appinstalled', () => {
+    installAppBtn.style.display = 'none';
+  });
 </script>
 
 </body>

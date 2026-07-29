@@ -1,0 +1,28 @@
+{
+  "name": "Delicate Skin & Care",
+  "short_name": "Delicate Skin",
+  "description": "Mobile esthetics in Southern California — book professional facials and get free AI-powered skin tips from a selfie.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#572443",
+  "background_color": "#fbf7f5",
+  "lang": "en-US",
+  "categories": ["beauty", "lifestyle", "health"],
+  "shortcuts": [
+    {
+      "name": "Get Free Skin Tips",
+      "short_name": "Skin Tips",
+      "description": "Upload a selfie for AI-powered skincare tips",
+      "url": "./index.html#services",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
