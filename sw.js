@@ -3,7 +3,7 @@
 // Bump this on every deploy that changes index.html or anything in APP_SHELL below —
 // returning visitors' browsers keep serving the OLD cached copy via cache-first
 // until this string changes (that's what makes the browser treat sw.js as updated).
-const CACHE_VERSION = 'dsc-v4';
+const CACHE_VERSION = 'dsc-v5';
 const APP_SHELL = [
   './',
   './index.html',
