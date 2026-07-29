@@ -529,7 +529,7 @@
     <div class="nav-actions">
       <button class="btn btn-outline" id="installAppBtn" style="display:none;">⬇ Install App</button>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
-      <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book Now</a>
+      <a class="btn btn-primary js-booking-link" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book Now</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
     </div>
   </div>
@@ -542,7 +542,7 @@
       <h1>Professional facials, brought directly to you.</h1>
       <p class="lead">Delicate Skin &amp; Care brings spa-quality facials, sculpting, and skincare treatments to your home or venue — performed by a licensed esthetician.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book an Appointment</a>
+        <a class="btn btn-primary js-booking-link" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book an Appointment</a>
         <a class="btn btn-outline" href="#services">View Services</a>
       </div>
       <button class="btn btn-skincheck" data-modal="skin-check-modal" style="flex-direction:column; align-items:flex-start; gap:2px;">
@@ -624,7 +624,7 @@
     <h2 style="margin-bottom:16px;">Ready to book your treatment?</h2>
     <p style="color:var(--grey); max-width:480px; margin:0 auto 28px;">Book online or reach out with any questions — we serve clients throughout Southern California.</p>
     <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-      <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book Now</a>
+      <a class="btn btn-primary js-booking-link" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book Now</a>
       <button class="btn btn-outline" data-modal="contact-modal">Contact Us</button>
     </div>
   </div>
@@ -644,8 +644,8 @@
     </div>
     <div>
       <div class="footer-brand" style="font-size:1rem;">Book</div>
-      <p><a href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book an Appointment</a></p>
-      <p><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></p>
+      <p><a href="https://tally.so/r/obOxA1" class="js-booking-link" target="_blank" rel="noopener">Book an Appointment</a></p>
+      <p><a href="https://www.instagram.com/" id="instagramLink" target="_blank" rel="noopener">Instagram</a></p>
     </div>
   </div>
   <div class="footer-bottom wrap">© <span id="year"></span> Delicate Skin &amp; Care. All rights reserved.</div>
@@ -659,7 +659,7 @@
     <h3 id="modalTitle"></h3>
     <div class="price" id="modalPrice"></div>
     <p class="desc" id="modalDesc"></p>
-    <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book This Treatment</a>
+    <a class="btn btn-primary js-booking-link" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book This Treatment</a>
   </div>
 </div>
 
@@ -672,7 +672,7 @@
     <h3 style="margin-top:16px;">Your Licensed Esthetician</h3>
     <p class="price">Skin &amp; Sculpting Specialist</p>
     <p class="desc">Bringing spa-quality, results-focused facials and body treatments directly to clients across Southern California. Every appointment is personalized to your skin's needs, using professional-grade products and modern techniques like microcurrent sculpting and LED light therapy.</p>
-    <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book an Appointment</a>
+    <a class="btn btn-primary js-booking-link" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book an Appointment</a>
   </div>
 </div>
 
@@ -683,7 +683,7 @@
     <h3>Spa Party</h3>
     <div class="price">$300</div>
     <p class="desc">Enjoy a relaxing spa experience brought directly to your home or chosen venue. Each event is hosted by a licensed esthetician and includes professional-grade skincare, guided mini facials, personalized skincare education, and product recommendations. Yes — we do group spa parties!</p>
-    <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Inquire About a Spa Party</a>
+    <a class="btn btn-primary js-booking-link" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Inquire About a Spa Party</a>
   </div>
 </div>
 
@@ -693,7 +693,7 @@
     <div class="service-icon">💌</div>
     <h3>Contact Us</h3>
     <p class="desc">The fastest way to reach us is through our online booking form — tell us what you're interested in and we'll follow up to confirm details and availability.</p>
-    <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Open Booking Form</a>
+    <a class="btn btn-primary js-booking-link" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Open Booking Form</a>
   </div>
 </div>
 
@@ -774,7 +774,7 @@
       <ul class="skin-tip-list" id="skinTipList"></ul>
       <p class="desc" id="skinTipRecommend" style="display:none; color:#736a70; font-weight:600;"></p>
       <p class="desc" style="color:#736a70; margin-top:4px;">Want a personalized plan? Our licensed esthetician can tailor a treatment just for you.</p>
-      <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener" style="width:100%;">Book a Free Consult</a>
+      <a class="btn btn-primary js-booking-link" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener" style="width:100%;">Book a Free Consult</a>
       <button class="btn-skincheck" id="skinSecondaryAction" style="margin-top:14px;">← Try another concern</button>
     </div>
   </div>
@@ -823,16 +823,31 @@
   </div>
   <div class="chat-frame-wrap" id="chatFrameWrap" style="display:none;">
     <button class="chat-frame-back" id="chatFrameBack">← Back to chat</button>
-    <iframe src="https://tally.so/embed/obOxA1?hideTitle=1&transparentBackground=1" title="Schedule an appointment"></iframe>
+    <iframe id="bookingEmbed" src="https://tally.so/embed/obOxA1?hideTitle=1&transparentBackground=1" title="Schedule an appointment"></iframe>
   </div>
 </div>
 
 <script>
+  // Business-specific values that are likely to change before/after launch —
+  // edit here instead of hunting through the page. Every "Book Now"-style link
+  // and the Instagram footer link are wired to these at load time below.
+  const SITE_CONFIG = {
+    bookingUrl: 'https://tally.so/r/obOxA1',
+    bookingEmbedUrl: 'https://tally.so/embed/obOxA1?hideTitle=1&transparentBackground=1',
+    // TODO: replace with the real Instagram handle before launch — currently
+    // points at instagram.com's homepage, not a profile.
+    instagramUrl: 'https://www.instagram.com/',
+  };
+
   // The Capacitor native shell has no same-origin /api route, so point it at the
   // deployed Vercel API. The browser-hosted site keeps using a relative path.
   const API_BASE = (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform())
     ? 'https://delicate-skin-care-app.vercel.app'
     : '';
+
+  document.querySelectorAll('.js-booking-link').forEach(a => { a.href = SITE_CONFIG.bookingUrl; });
+  document.getElementById('bookingEmbed').src = SITE_CONFIG.bookingEmbedUrl;
+  document.getElementById('instagramLink').href = SITE_CONFIG.instagramUrl;
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1074,6 +1089,18 @@
     }
   }
 
+  // Builds <li> elements via textContent rather than innerHTML template strings,
+  // since observations/tips can come from the model's response to an uploaded
+  // image — treat that as untrusted input, not markup.
+  function setListItems(el, items) {
+    el.innerHTML = '';
+    items.forEach(text => {
+      const li = document.createElement('li');
+      li.textContent = text;
+      el.appendChild(li);
+    });
+  }
+
   function renderRealAnalysis(data) {
     document.getElementById('skinTipTitle').textContent = "Here's what we noticed";
 
@@ -1084,13 +1111,13 @@
     const obsLabel = document.getElementById('skinObsLabel');
     const obsList = document.getElementById('skinObservationList');
     const hasObs = Array.isArray(data.observations) && data.observations.length > 0;
-    obsList.innerHTML = hasObs ? data.observations.map(o => `<li>${o}</li>`).join('') : '';
+    setListItems(obsList, hasObs ? data.observations : []);
     obsList.style.display = hasObs ? 'flex' : 'none';
     obsLabel.style.display = hasObs ? 'block' : 'none';
 
     const tipsLabel = document.getElementById('skinTipsLabel');
     const hasTips = Array.isArray(data.tips) && data.tips.length > 0;
-    document.getElementById('skinTipList').innerHTML = hasTips ? data.tips.map(t => `<li>${t}</li>`).join('') : '';
+    setListItems(document.getElementById('skinTipList'), hasTips ? data.tips : []);
     tipsLabel.style.display = hasTips ? 'block' : 'none';
 
     const recEl = document.getElementById('skinTipRecommend');
@@ -1156,7 +1183,7 @@
     document.getElementById('skinObsLabel').style.display = 'none';
     document.getElementById('skinObservationList').style.display = 'none';
     document.getElementById('skinTipsLabel').style.display = 'none';
-    document.getElementById('skinTipList').innerHTML = data.tips.map(t => `<li>${t}</li>`).join('');
+    setListItems(document.getElementById('skinTipList'), data.tips);
     document.getElementById('skinTipRecommend').style.display = 'none';
     setSkinSecondaryAction('concern');
     showSkinStep('tips');

@@ -4,6 +4,14 @@ const Anthropic = require('@anthropic-ai/sdk');
 const client = new Anthropic();
 
 const ALLOWED_MEDIA_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+// The site itself is same-origin (no CORS header needed there); these are the
+// other origins that legitimately call this endpoint cross-origin.
+const ALLOWED_ORIGINS = [
+  'https://delicate-skin-care-app.vercel.app',
+  'capacitor://localhost',
+  'http://localhost',
+  'https://localhost',
+];
 const SERVICE_NAMES = [
   'Signature Facial',
   'Clarifying Acne Therapy',
@@ -16,8 +24,11 @@ const SERVICE_NAMES = [
 
 module.exports = async function handler(req, res) {
   // The Capacitor Android app calls this from a capacitor://localhost origin
-  // rather than the site's own origin, so it needs an explicit CORS allowance.
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // rather than the site's own origin, so it needs an explicit CORS allowance —
+  // scoped to known origins rather than '*', since this hits a paid API.
+  if (ALLOWED_ORIGINS.includes(req.headers.origin)) {
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
