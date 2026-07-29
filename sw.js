@@ -3,7 +3,7 @@
 // Bump this on every deploy that changes index.html or anything in APP_SHELL below —
 // returning visitors' browsers keep serving the OLD cached copy via cache-first
 // until this string changes (that's what makes the browser treat sw.js as updated).
-const CACHE_VERSION = 'dsc-v3';
+const CACHE_VERSION = 'dsc-v4';
 const APP_SHELL = [
   './',
   './index.html',
@@ -12,6 +12,7 @@ const APP_SHELL = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './delicate-skin-and-care_assets/hero-facial.jpg',
+  './delicate-skin-and-care_assets/spa-party.jpg',
 ];
 
 // Install: cache the app shell and activate immediately
