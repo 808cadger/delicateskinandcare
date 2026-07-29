@@ -828,6 +828,12 @@
 </div>
 
 <script>
+  // The Capacitor native shell has no same-origin /api route, so point it at the
+  // deployed Vercel API. The browser-hosted site keeps using a relative path.
+  const API_BASE = (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform())
+    ? 'https://delicate-skin-care-app.vercel.app'
+    : '';
+
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Dark mode toggle
@@ -1054,7 +1060,7 @@
       const match = dataUrl.match(/^data:(.*?);base64,(.*)$/);
       if (!match) throw new Error('Unexpected image format');
       const [, mediaType, base64] = match;
-      const res = await fetch('/api/analyze-skin', {
+      const res = await fetch(`${API_BASE}/api/analyze-skin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ image: base64, mediaType }),

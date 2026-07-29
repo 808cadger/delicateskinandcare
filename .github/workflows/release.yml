@@ -1,0 +1,48 @@
+name: Release Android APK
+
+# Triggers when you push a tag like v1.0.0 (see "Creating a release" in README).
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build www/ from the static site
+        run: npm run build
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Sync web assets into the Android project
+        run: npx cap sync android
+
+      - name: Build debug APK
+        working-directory: android
+        run: ./gradlew assembleDebug
+
+      # Debug APKs are signed with Gradle's built-in debug key, so they install fine
+      # for sideloading/testing. For a Play Store-ready release build, add a signing
+      # config + secrets and switch this to `assembleRelease`.
+      - name: Rename APK to a fixed filename
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk delicate-skin-care.apk
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: delicate-skin-care.apk

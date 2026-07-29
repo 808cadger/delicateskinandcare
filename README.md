@@ -3,6 +3,18 @@
 Static marketing site + one serverless function that powers the "Get Free Skin Tips"
 selfie feature with a real call to Claude's vision API.
 
+## Download
+
+[![Visit Site](https://img.shields.io/badge/Visit_Site-live-572443?style=for-the-badge)](https://delicate-skin-care-app.vercel.app)
+[![Download APK](https://img.shields.io/github/v/release/808cadger/delicateskinandcare?label=Download%20APK&style=for-the-badge&color=3DDC84)](https://github.com/808cadger/delicateskinandcare/releases/latest/download/delicate-skin-care.apk)
+[![Download Source](https://img.shields.io/badge/Download-Source_ZIP-blue?style=for-the-badge)](https://github.com/808cadger/delicateskinandcare/archive/refs/heads/main.zip)
+
+- **Visit Site** — the live web app. On mobile, use your browser's "Add to Home Screen"
+  to install it as a PWA today, no app store needed.
+- **Download APK** — always points at the newest [Release](https://github.com/808cadger/delicateskinandcare/releases)'s
+  Android build. Shows "No releases" until the first one is published (see CI section below).
+- **Download Source** — a ZIP of the `main` branch, generated automatically by GitHub.
+
 ## What's here
 
 - `index.html` — the site (dark mode, chat widget, promo card, and the skin-tips modal).
