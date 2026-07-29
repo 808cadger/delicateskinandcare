@@ -114,11 +114,8 @@
     position:relative;
     padding:clamp(64px,10vw,90px) clamp(20px,4vw,24px) clamp(72px,14vw,110px);
     background:
-      linear-gradient(100deg, var(--cream) 0%, rgba(var(--scrim-rgb),.92) 28%, rgba(var(--scrim-rgb),.55) 50%, rgba(var(--scrim-rgb),.15) 72%),
-      radial-gradient(circle at 80% 10%, rgba(252,239,235,.5), transparent 55%),
-      radial-gradient(circle at 10% 90%, rgba(214,199,208,.5), transparent 45%),
-      url("delicate-skin-and-care_assets/hero-facial.jpg") center 22% / cover no-repeat,
-      var(--cream);
+      linear-gradient(180deg, rgba(45,17,34,.45) 0%, rgba(45,17,34,.72) 100%),
+      url("delicate-skin-and-care_assets/hero-facial.jpg") center 22% / cover no-repeat;
     overflow:hidden;
   }
   .hero::before{
@@ -127,6 +124,12 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   .hero-inner{position:relative; max-width:1160px; margin:0 auto; display:grid; grid-template-columns:1.1fr .9fr; gap:60px; align-items:center;}
+  .hero .eyebrow{color:#fff; background:rgba(255,255,255,.16);}
+  .hero h1{color:#fff;}
+  .hero p.lead{color:rgba(255,255,255,.85);}
+  .hero .btn-skincheck{color:#fff; border-bottom-color:rgba(255,255,255,.6);}
+  .hero .btn-outline{background:rgba(255,255,255,.08); color:#fff; border-color:rgba(255,255,255,.55);}
+  .hero .btn-outline:hover{background:#fff; color:var(--plum-dark);}
   .eyebrow{
     display:inline-block; text-transform:uppercase; letter-spacing:2px; font-size:.75rem;
     font-weight:700; color:var(--accent-canvas); background:var(--chip-bg);
