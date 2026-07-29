@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delicate Skin & Care | Mobile Esthetics — Southern California</title>
+<meta name="description" content="Delicate Skin & Care brings professional facials and esthetic services to you, anywhere in Southern California.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --plum:#572443;
+    --plum-dark:#3d1830;
+    --mauve:#d6c7d0;
+    --blush:#fcefeb;
+    --cream:#fbf7f5;
+    --ink:#2a1a24;
+    --grey:#736a70;
+    --white:#ffffff;
+    --heading-canvas:var(--plum-dark);
+    --accent-canvas:var(--plum);
+    --chip-bg:rgba(87,36,67,0.08);
+    --header-bg:rgba(251,247,245,0.85);
+    --scrim-rgb:251,247,245;
+    --shadow: 0 2px 6px -2px rgba(87,36,67,0.18), 0 24px 54px -22px rgba(87,36,67,0.4);
+    --shadow-sm: 0 1px 3px -1px rgba(87,36,67,0.16), 0 10px 26px -14px rgba(87,36,67,0.32);
+    color-scheme: light;
+  }
+  :root[data-theme="dark"]{
+    --mauve:#4a3040;
+    --blush:#3a2430;
+    --cream:#180f14;
+    --ink:#f2e6ec;
+    --grey:#b9a3ae;
+    --heading-canvas:#f6dced;
+    --accent-canvas:#eeb3d4;
+    --chip-bg:rgba(255,255,255,0.12);
+    --header-bg:rgba(24,15,20,0.85);
+    --scrim-rgb:24,15,20;
+    --shadow: 0 2px 6px -2px rgba(0,0,0,0.35), 0 24px 54px -22px rgba(0,0,0,0.6);
+    --shadow-sm: 0 1px 3px -1px rgba(0,0,0,0.3), 0 10px 26px -14px rgba(0,0,0,0.5);
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    overflow-x:hidden;
+    transition:background .3s ease, color .3s ease;
+  }
+  h1,h2,h3,h4{font-family:'Playfair Display', serif; font-weight:600; color:var(--heading-canvas);}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 24px;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 30px; border-radius:100px; font-weight:600; font-size:0.95rem;
+    border:none; cursor:pointer; transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease, background .2s ease;
+    letter-spacing:.2px;
+  }
+  .btn-primary{background:var(--plum); color:var(--white); box-shadow:var(--shadow-sm);}
+  .btn-primary:hover{background:var(--plum-dark); transform:translateY(-3px) scale(1.03); box-shadow:0 14px 28px -10px rgba(87,36,67,0.55);}
+  .btn-primary:active{transform:translateY(-1px) scale(.98);}
+  .btn-outline{background:transparent; color:var(--accent-canvas); border:1.5px solid var(--accent-canvas);}
+  .btn-outline:hover{background:var(--plum-dark); color:#fff; transform:translateY(-3px) scale(1.03); box-shadow:0 14px 28px -10px rgba(87,36,67,0.4);}
+  .btn-outline:active{transform:translateY(-1px) scale(.98);}
+  .btn-ghost{background:var(--white); color:var(--plum); box-shadow:var(--shadow-sm);}
+  .btn-ghost:hover{transform:translateY(-3px) scale(1.03);}
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--header-bg);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(87,36,67,0.08);
+    transition:background .3s ease;
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Playfair Display',serif; font-size:clamp(1.05rem, 1.8vw, 1.25rem); font-weight:700; color:var(--heading-canvas);}
+  .brand-mark{
+    width:38px; height:38px; border-radius:50%;
+    background:linear-gradient(135deg,var(--plum),#8b3d6b);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Playfair Display',serif; font-weight:700; font-size:1rem;
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+  }
+  .brand:hover .brand-mark{ transform:rotate(-10deg) scale(1.08); }
+  nav ul{list-style:none; display:flex; gap:32px;}
+  nav ul li a{font-weight:500; font-size:.95rem; color:var(--ink); transition:color .2s;}
+  nav ul li a:hover{color:var(--accent-canvas);}
+  .nav-actions{display:flex; align-items:center; gap:14px;}
+  .menu-toggle{display:none; background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--heading-canvas);}
+  .theme-toggle{
+    width:40px; height:40px; border-radius:50%; border:1.5px solid rgba(87,36,67,0.15);
+    background:var(--white); color:var(--plum-dark); font-size:1.05rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:transform .2s ease, background .2s ease;
+    flex-shrink:0;
+  }
+  .theme-toggle:hover{transform:scale(1.08);}
+
+  /* Hero */
+  .hero{
+    position:relative;
+    padding:clamp(64px,10vw,90px) clamp(20px,4vw,24px) clamp(72px,14vw,110px);
+    background:
+      linear-gradient(100deg, var(--cream) 0%, rgba(var(--scrim-rgb),.92) 28%, rgba(var(--scrim-rgb),.55) 50%, rgba(var(--scrim-rgb),.15) 72%),
+      radial-gradient(circle at 80% 10%, rgba(252,239,235,.5), transparent 55%),
+      radial-gradient(circle at 10% 90%, rgba(214,199,208,.5), transparent 45%),
+      url("delicate-skin-and-care_assets/hero-facial.jpg") center 22% / cover no-repeat,
+      var(--cream);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0; pointer-events:none; opacity:.04; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .hero-inner{position:relative; max-width:1160px; margin:0 auto; display:grid; grid-template-columns:1.1fr .9fr; gap:60px; align-items:center;}
+  .eyebrow{
+    display:inline-block; text-transform:uppercase; letter-spacing:2px; font-size:.75rem;
+    font-weight:700; color:var(--accent-canvas); background:var(--chip-bg);
+    padding:8px 16px; border-radius:100px; margin-bottom:20px;
+  }
+  .hero h1{font-size:clamp(2.2rem, 4.5vw, 3.4rem); line-height:1.15; margin-bottom:20px;}
+  .hero p.lead{font-size:clamp(1rem, .9rem + .4vw, 1.15rem); color:var(--grey); max-width:480px; margin-bottom:32px;}
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-skincheck{
+    display:inline-flex; align-items:center; gap:8px; margin-top:18px;
+    background:none; border:none; padding:0; cursor:pointer;
+    font-weight:600; font-size:.92rem; color:var(--accent-canvas);
+    border-bottom:1.5px dashed var(--accent-canvas); padding-bottom:2px;
+    transition:opacity .2s ease;
+  }
+  .btn-skincheck:hover{opacity:.75;}
+
+  /* Avatar card */
+  .avatar-card{
+    position:relative;
+    background:var(--white);
+    border-radius:28px;
+    padding:clamp(26px,4vw,36px) clamp(20px,3vw,28px);
+    box-shadow:var(--shadow);
+    text-align:center;
+    max-width:340px;
+    margin:0 auto;
+  }
+  .avatar-ring{
+    width:clamp(120px,16vw,150px); height:clamp(120px,16vw,150px); margin:0 auto 18px;
+    border-radius:50%;
+    padding:5px;
+    background:conic-gradient(from 180deg, var(--plum), #b3689a, var(--mauve), var(--plum));
+    display:flex; align-items:center; justify-content:center;
+    animation:spin 8s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .avatar-ring .avatar-inner{
+    width:100%; height:100%; border-radius:50%;
+    background:var(--white); padding:4px;
+    animation:spin-reverse 8s linear infinite;
+  }
+  @keyframes spin-reverse{ to{ transform:rotate(-360deg); } }
+  .avatar-photo{
+    width:100%; height:100%; border-radius:50%;
+    background:
+      radial-gradient(circle at 22% 18%, rgba(255,255,255,0.4), transparent 42%),
+      radial-gradient(circle at 82% 12%, rgba(255,173,214,0.55), transparent 50%),
+      radial-gradient(circle at 25% 90%, rgba(139,61,107,0.6), transparent 55%),
+      radial-gradient(circle at 90% 85%, rgba(214,199,208,0.45), transparent 50%),
+      linear-gradient(150deg, var(--plum) 0%, #8b3d6b 60%, #c98bab 100%);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(2rem,5vw,2.6rem);
+    position:relative; overflow:hidden;
+  }
+  .avatar-photo::after{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.35), transparent 55%);
+  }
+  .avatar-photo::before{
+    content:"";
+    position:absolute; inset:0; z-index:1; opacity:.16; mix-blend-mode:overlay; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .avatar-badge{
+    position:absolute; bottom:14px; right:calc(50% - 75px);
+    width:34px; height:34px; border-radius:50%;
+    background:#22c55e; border:3px solid var(--white);
+  }
+  .avatar-card h3{font-size:1.2rem; margin-bottom:4px; color:var(--plum-dark);}
+  .avatar-card .role{color:var(--plum); font-weight:600; font-size:.85rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px;}
+  .avatar-card .stars{color:#e8a33d; font-size:.95rem; margin-bottom:14px;}
+  .avatar-card .btn{width:100%;}
+
+  /* Scroll reveal */
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .reveal-stagger > *{opacity:0; transform:translateY(24px); transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);}
+  .reveal-stagger.in > *{opacity:1; transform:translateY(0);}
+  .reveal-stagger.in > *:nth-child(1){transition-delay:.03s;}
+  .reveal-stagger.in > *:nth-child(2){transition-delay:.09s;}
+  .reveal-stagger.in > *:nth-child(3){transition-delay:.15s;}
+  .reveal-stagger.in > *:nth-child(4){transition-delay:.21s;}
+  .reveal-stagger.in > *:nth-child(5){transition-delay:.27s;}
+  .reveal-stagger.in > *:nth-child(6){transition-delay:.33s;}
+  .reveal-stagger.in > *:nth-child(7){transition-delay:.39s;}
+  @media (prefers-reduced-motion:reduce){
+    .reveal, .reveal-stagger > *{opacity:1; transform:none; transition:none;}
+  }
+
+  section{padding:clamp(56px,9vw,90px) clamp(20px,4vw,24px);}
+  .section-head{text-align:center; max-width:600px; margin:0 auto clamp(36px,6vw,56px);}
+  .section-head .eyebrow{margin-bottom:14px;}
+  .section-head h2{font-size:clamp(1.8rem,3.2vw,2.5rem); margin-bottom:14px;}
+  .section-head p{color:var(--grey);}
+
+  /* Services */
+  .services-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); grid-auto-rows:1fr; gap:24px;
+  }
+  .service-card{
+    background:var(--white); border-radius:20px; padding:clamp(22px,3vw,30px);
+    box-shadow:var(--shadow-sm); cursor:pointer;
+    transition:transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s cubic-bezier(.16,1,.3,1);
+    border:1px solid rgba(87,36,67,0.06);
+    text-align:left; display:flex; flex-direction:column;
+  }
+  .service-card:hover{transform:translateY(-6px); box-shadow:var(--shadow);}
+  .service-card.featured{
+    grid-column:span 2; background:linear-gradient(150deg,var(--plum) 0%, #7a3560 65%, #a8567f 100%);
+    color:#fff; position:relative;
+  }
+  .service-card.featured::before{
+    content:""; position:absolute; inset:0; border-radius:inherit; opacity:.15; mix-blend-mode:overlay; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .service-card.featured h3, .service-card.featured .price{color:#fff;}
+  .service-card.featured p{color:rgba(255,255,255,0.8);}
+  .service-card.featured .service-icon{background:rgba(255,255,255,0.18);}
+  .service-card.featured .tap-hint{color:#fff;}
+  .service-card.featured .badge{
+    position:absolute; top:24px; right:24px; background:rgba(255,255,255,0.2);
+    padding:5px 12px; border-radius:100px; font-size:.7rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:1px;
+  }
+  .service-card.featured.tilt-glow::after{
+    background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.5), transparent 70%), radial-gradient(circle at 85% 15%, rgba(255,255,255,0.18), transparent 55%);
+  }
+  .service-icon{
+    width:52px; height:52px; border-radius:14px;
+    background:linear-gradient(135deg,var(--blush),var(--mauve));
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem; margin-bottom:18px;
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+    animation:icon-float 3.2s ease-in-out infinite;
+  }
+  @keyframes icon-float{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-8px); }
+  }
+  .service-card:nth-child(odd) .service-icon{ animation-delay:-1.6s; }
+  .service-card:hover .service-icon{ animation-play-state:paused; transform:rotate(-8deg) scale(1.1); }
+  @media (prefers-reduced-motion:reduce){
+    .service-icon{ animation:none; }
+  }
+  .service-card h3{font-size:clamp(1.05rem,1.6vw,1.15rem); margin-bottom:8px; color:var(--plum-dark);}
+  .service-card .price{color:var(--plum); font-weight:700; font-size:1.05rem; margin-bottom:10px;}
+  .service-card p{color:#736a70; font-size:.92rem;}
+  .service-card .tap-hint{margin-top:auto; padding-top:16px; font-size:.8rem; color:var(--plum); font-weight:600;}
+
+  /* Cursor-reactive tilt + glow (services & testimonials) */
+  .tilt-glow{ position:relative; }
+  .tilt-glow::before, .tilt-glow::after{ transition:opacity .35s ease; }
+  .tilt-glow::after{
+    content:""; position:absolute; inset:-3px; z-index:-1; border-radius:inherit;
+    background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%), rgba(139,61,107,0.45), transparent 70%);
+    opacity:0; filter:blur(16px); pointer-events:none;
+  }
+  .tilt-glow:hover::after{ opacity:1; }
+  @media (hover:none){ .tilt-glow::after{ display:none; } }
+
+  @media (max-width:640px){
+    .service-card.featured{grid-column:span 1;}
+  }
+
+  /* Testimonials */
+  .testimonials{background:var(--plum); color:var(--white);}
+  .testimonials .section-head h2{color:var(--white);}
+  .testimonials .section-head p{color:rgba(255,255,255,0.75);}
+  .testimonials .eyebrow{background:rgba(255,255,255,0.15); color:#fff;}
+  .testimonials .tilt-glow::after{ background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.35), transparent 70%); }
+  .t-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px;}
+  .t-card{
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
+    border-radius:20px; padding:clamp(22px,3vw,28px); cursor:pointer;
+    transition:background .2s, transform .3s cubic-bezier(.16,1,.3,1);
+  }
+  .t-card:hover{background:rgba(255,255,255,0.14); transform:translateY(-4px);}
+  .t-card .stars{color:#e8a33d; margin-bottom:12px;}
+  .t-card p{color:rgba(255,255,255,0.85); font-size:.95rem; margin-bottom:16px;}
+  .t-card .name{font-weight:600; font-size:.9rem;}
+
+  /* CTA */
+  .cta{
+    background:linear-gradient(135deg, var(--blush), var(--mauve));
+    border-radius:28px; padding:clamp(40px,7vw,60px) clamp(24px,5vw,40px); text-align:center;
+    max-width:1160px; margin:0 auto; position:relative; overflow:hidden;
+  }
+  .cta::before{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.05; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .cta > *{ position:relative; }
+  .cta h2{margin-bottom:14px;}
+  .cta p{color:var(--grey); max-width:480px; margin:0 auto 28px;}
+
+  footer{background:var(--plum-dark); color:rgba(255,255,255,0.7); padding:clamp(36px,6vw,50px) clamp(20px,4vw,24px) clamp(24px,4vw,30px); font-size:.9rem;}
+  .footer-inner{max-width:1160px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;}
+  .footer-brand{color:#fff; font-family:'Playfair Display',serif; font-size:1.15rem; margin-bottom:10px;}
+  footer a:hover{color:#fff;}
+  .footer-bottom{max-width:1160px; margin:36px auto 0; padding-top:20px; border-top:1px solid rgba(255,255,255,0.12); font-size:.8rem;}
+
+  /* Popup / modal */
+  .overlay{
+    position:fixed; inset:0; background:rgba(42,26,36,0.55); backdrop-filter:blur(3px);
+    display:flex; align-items:center; justify-content:center; padding:24px;
+    z-index:100; opacity:0; pointer-events:none; transition:opacity .25s ease;
+  }
+  .overlay.open{opacity:1; pointer-events:auto;}
+  .modal{
+    background:rgba(255,255,255,0.82); backdrop-filter:blur(22px) saturate(160%); -webkit-backdrop-filter:blur(22px) saturate(160%);
+    border:1px solid rgba(255,255,255,0.6);
+    border-radius:24px; max-width:460px; width:100%;
+    padding:clamp(26px,4vw,36px); position:relative; box-shadow:var(--shadow);
+    transform:translateY(16px) scale(.95); transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+    max-height:85vh; overflow-y:auto;
+  }
+  .overlay.open .modal{transform:translateY(0) scale(1);}
+  .modal-close{
+    position:absolute; top:18px; right:18px; width:34px; height:34px; border-radius:50%;
+    background:#fbf7f5; border:none; font-size:1.1rem; cursor:pointer; color:var(--plum-dark);
+    display:flex; align-items:center; justify-content:center; transition:background .2s;
+  }
+  .modal-close:hover{background:#d6c7d0;}
+  .modal .service-icon{margin-bottom:16px;}
+  .modal h3{font-size:1.4rem; margin-bottom:6px; color:var(--plum-dark);}
+  .modal .price{color:var(--plum); font-weight:700; font-size:1.15rem; margin-bottom:16px;}
+  .modal p.desc{color:#736a70; margin-bottom:24px;}
+  .modal .btn{width:100%;}
+
+  /* Skin check modal */
+  .skin-avatar-ring{ width:clamp(160px,42vw,220px); height:clamp(160px,42vw,220px); }
+  .skin-avatar-photo{ font-size:clamp(2.6rem,9vw,3.6rem); }
+  @media (max-width:640px){
+    .skin-avatar-ring{ width:clamp(190px,58vw,240px); height:clamp(190px,58vw,240px); }
+    .skin-avatar-photo{ font-size:clamp(3.1rem,13vw,4rem); }
+  }
+  .skin-concern-grid{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:8px;}
+  .skin-concern-grid button{
+    background:var(--white); border:1.5px solid var(--mauve); color:var(--plum);
+    padding:9px 15px; border-radius:100px; font-size:.82rem; font-weight:600; cursor:pointer;
+    transition:background .2s, color .2s;
+  }
+  .skin-concern-grid button:hover{background:var(--plum); color:#fff; border-color:var(--plum);}
+  .skin-tip-list{list-style:none; text-align:left; margin:18px 0; display:flex; flex-direction:column; gap:12px;}
+  .skin-tip-list li{
+    display:flex; gap:10px; align-items:flex-start; font-size:.9rem; color:#2a1a24; line-height:1.5;
+  }
+  .skin-tip-list li::before{content:"✓"; color:var(--plum); font-weight:700; flex-shrink:0;}
+
+  /* Floating promo ad */
+  .float-ad{
+    position:fixed; left:20px; bottom:20px; z-index:80;
+    width:290px; background:rgba(255,255,255,0.82); backdrop-filter:blur(18px) saturate(160%); -webkit-backdrop-filter:blur(18px) saturate(160%);
+    border:1px solid rgba(255,255,255,0.6);
+    border-radius:18px;
+    box-shadow:var(--shadow); padding:20px; display:flex; gap:14px;
+    align-items:flex-start; transform:translateY(140%); transition:transform .4s ease;
+  }
+  .float-ad.show{transform:translateY(0);}
+  .float-ad .ad-icon{
+    width:44px; height:44px; border-radius:12px; flex-shrink:0;
+    background:linear-gradient(135deg,var(--plum),#b3689a);
+    display:flex; align-items:center; justify-content:center; font-size:1.3rem;
+  }
+  .float-ad .ad-body h4{font-size:.95rem; margin-bottom:4px; color:var(--plum-dark);}
+  .float-ad .ad-body p{font-size:.82rem; color:#736a70; margin-bottom:10px;}
+  .float-ad .ad-body .btn{padding:8px 16px; font-size:.8rem;}
+  .float-ad .ad-close{
+    position:absolute; top:8px; right:10px; background:none; border:none;
+    font-size:.9rem; color:#736a70; cursor:pointer; line-height:1;
+  }
+
+  /* Floating chat widget */
+  .chat-fab{
+    position:fixed; right:22px; bottom:22px; z-index:90;
+    height:64px; padding:0 24px 0 12px; border-radius:100px;
+    background:linear-gradient(135deg, #ff5b94, #c2408a); color:#fff; border:none; cursor:pointer;
+    box-shadow:0 12px 32px -8px rgba(255,91,148,0.65), 0 0 0 6px rgba(255,91,148,0.15);
+    display:flex; align-items:center; gap:12px;
+    transition:transform .2s ease, box-shadow .2s ease;
+    animation:fab-pulse 2.4s ease-in-out infinite;
+  }
+  .chat-fab:hover{transform:scale(1.05) translateY(-2px); box-shadow:0 16px 40px -6px rgba(255,91,148,0.8), 0 0 0 8px rgba(255,91,148,0.18);}
+  .chat-fab .fab-icon{
+    width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.22);
+    display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0;
+    position:relative;
+  }
+  .chat-fab .fab-label{font-weight:700; font-size:.95rem; letter-spacing:.2px; white-space:nowrap;}
+  @keyframes fab-pulse{
+    0%, 100%{ box-shadow:0 12px 32px -8px rgba(255,91,148,0.65), 0 0 0 6px rgba(255,91,148,0.15); }
+    50%{ box-shadow:0 12px 32px -8px rgba(255,91,148,0.65), 0 0 0 14px rgba(255,91,148,0.04); }
+  }
+  .chat-fab .fab-dot{
+    position:absolute; top:-2px; right:-2px; width:15px; height:15px; border-radius:50%;
+    background:#22c55e; border:2.5px solid #fff;
+  }
+
+  /* Greeting tooltip bubble */
+  .chat-greet{
+    position:fixed; right:22px; bottom:98px; z-index:89;
+    max-width:230px; background:rgba(255,255,255,0.85); backdrop-filter:blur(16px) saturate(160%); -webkit-backdrop-filter:blur(16px) saturate(160%);
+    border:1px solid rgba(255,255,255,0.6);
+    color:#2a1a24;
+    padding:14px 16px; border-radius:16px 16px 4px 16px;
+    box-shadow:var(--shadow); font-size:.85rem; line-height:1.45;
+    opacity:0; transform:translateY(10px) scale(.96); pointer-events:none;
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .chat-greet.show{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
+  .chat-greet button.greet-close{
+    position:absolute; top:6px; right:8px; background:none; border:none;
+    color:#736a70; font-size:.75rem; cursor:pointer;
+  }
+  .chat-panel{
+    position:fixed; right:22px; bottom:108px; z-index:90;
+    width:340px; max-width:calc(100vw - 40px); height:480px; max-height:70vh;
+    background:rgba(255,255,255,0.85); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%);
+    border:1px solid rgba(255,255,255,0.6);
+    border-radius:20px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; overflow:hidden;
+    opacity:0; transform:translateY(16px) scale(.95); pointer-events:none;
+    transition:opacity .3s ease, transform .35s cubic-bezier(.34,1.56,.64,1);
+  }
+  .chat-panel.open{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
+  .chat-header{
+    background:var(--plum); color:#fff; padding:16px 18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .chat-header .avatar-photo{width:36px; height:36px; font-size:.95rem; border-radius:50%;}
+  .chat-header .who{flex:1;}
+  .chat-header .who .name{font-weight:600; font-size:.92rem;}
+  .chat-header .who .status{font-size:.75rem; color:rgba(255,255,255,0.75); display:flex; align-items:center; gap:5px;}
+  .chat-header .who .status::before{content:""; width:7px; height:7px; border-radius:50%; background:#22c55e; display:inline-block;}
+  .chat-header .chat-close{background:none; border:none; color:#fff; font-size:1.1rem; cursor:pointer; opacity:.85;}
+  .chat-body{flex:1; overflow-y:auto; padding:16px; background:rgba(251,247,245,0.45); display:flex; flex-direction:column; gap:10px;}
+  .chat-msg{
+    max-width:85%; padding:10px 14px; border-radius:14px; font-size:.85rem; line-height:1.5;
+  }
+  .chat-msg.bot{background:rgba(255,255,255,0.85); border:1px solid rgba(87,36,67,0.08); border-bottom-left-radius:4px; align-self:flex-start; color:#2a1a24;}
+  .chat-msg.user{background:var(--plum); color:#fff; border-bottom-right-radius:4px; align-self:flex-end;}
+  .chat-quick{display:flex; flex-wrap:wrap; gap:8px; padding:0 16px 16px; background:rgba(251,247,245,0.45);}
+  .chat-quick button{
+    background:var(--white); border:1.5px solid var(--mauve); color:var(--plum);
+    padding:8px 14px; border-radius:100px; font-size:.78rem; font-weight:600; cursor:pointer;
+    transition:background .2s, color .2s;
+  }
+  .chat-quick button:hover{background:var(--plum); color:#fff; border-color:var(--plum);}
+  .chat-frame-wrap{flex:1; display:flex; flex-direction:column;}
+  .chat-frame-wrap iframe{flex:1; width:100%; border:none;}
+  .chat-frame-back{
+    padding:10px 16px; font-size:.78rem; font-weight:600; color:var(--plum);
+    background:var(--white); border:none; border-bottom:1px solid rgba(87,36,67,0.08);
+    text-align:left; cursor:pointer;
+  }
+
+  @media (max-width:860px){
+    .float-ad{left:12px; bottom:12px; width:260px;}
+    .chat-fab{right:16px; bottom:16px; height:58px; padding:0 10px;}
+    .chat-fab .fab-icon{width:40px; height:40px; font-size:1.3rem;}
+    .chat-fab .fab-label{display:none;}
+    .chat-greet{right:16px; bottom:82px;}
+    .chat-panel{right:12px; bottom:88px;}
+    .hero-inner{grid-template-columns:1fr; text-align:center;}
+    .hero p.lead{margin-left:auto; margin-right:auto;}
+    .hero-actions{justify-content:center;}
+    nav ul{
+      position:fixed; top:70px; right:24px; left:24px; background:var(--white);
+      flex-direction:column; padding:20px; border-radius:16px; box-shadow:var(--shadow);
+      display:none; gap:6px;
+    }
+    nav ul.open{display:flex;}
+    nav ul li a{display:block; padding:10px 6px; color:#2a1a24;}
+    nav ul li a:hover{color:var(--plum);}
+    .menu-toggle{display:block;}
+    .nav-actions .btn-primary{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#" class="brand">
+      <span class="brand-mark">DS</span>
+      Delicate Skin &amp; Care
+    </a>
+    <nav>
+      <ul id="navList">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#esthetician">Meet Your Esthetician</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#spa-party">Spa Party</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+      <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book Now</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">Mobile Esthetics · Southern California</span>
+      <h1>Professional facials, brought directly to you.</h1>
+      <p class="lead">Delicate Skin &amp; Care brings spa-quality facials, sculpting, and skincare treatments to your home or venue — performed by a licensed esthetician.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book an Appointment</a>
+        <a class="btn btn-outline" href="#services">View Services</a>
+      </div>
+      <button class="btn btn-skincheck" data-modal="skin-check-modal" style="flex-direction:column; align-items:flex-start; gap:2px;">
+        <span>📸 Get Free Skin Tips</span>
+        <span style="font-size:.78rem; font-weight:500; opacity:.8;">Take a Selfie</span>
+      </button>
+    </div>
+    <div class="avatar-card" id="estheticianAvatar">
+      <div class="avatar-ring">
+        <div class="avatar-inner">
+          <div class="avatar-photo">DS</div>
+        </div>
+      </div>
+      <span class="avatar-badge" title="Available now"></span>
+      <h3>Your Licensed Esthetician</h3>
+      <p class="role">Skin &amp; Sculpting Specialist</p>
+      <p class="stars">★★★★★</p>
+      <button class="btn btn-primary" data-modal="esthetician-modal">Meet Your Esthetician</button>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Facials &amp; Treatments</span>
+      <h2>Esthetic services, tailored to your skin</h2>
+      <p>Tap any treatment to see full details and book directly.</p>
+    </div>
+    <div class="services-grid reveal-stagger" id="servicesGrid"></div>
+  </div>
+</section>
+
+<section id="esthetician" style="background:var(--blush);">
+  <div class="wrap reveal" style="display:grid; grid-template-columns:.8fr 1.2fr; gap:48px; align-items:center;">
+    <div class="avatar-card" style="max-width:280px;">
+      <div class="avatar-ring">
+        <div class="avatar-inner">
+          <div class="avatar-photo" style="font-size:2.2rem;">DS</div>
+        </div>
+      </div>
+      <h3>Licensed Esthetician</h3>
+      <p class="role">Delicate Skin &amp; Care</p>
+    </div>
+    <div>
+      <span class="eyebrow">Meet Your Esthetician</span>
+      <h2 style="margin-bottom:16px;">Find your perfect treatment</h2>
+      <p style="color:var(--grey); margin-bottom:24px;">Every service is performed one-on-one by a licensed esthetician who brings professional-grade tools and products to you — so you can relax at home while getting results-driven skincare.</p>
+      <button class="btn btn-primary" data-modal="esthetician-modal">Read Full Bio</button>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="testimonials">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Client Love</span>
+      <h2>What clients are saying</h2>
+      <p>Real feedback from real appointments.</p>
+    </div>
+    <div class="t-grid reveal-stagger" id="testimonialsGrid"></div>
+  </div>
+</section>
+
+<section id="spa-party">
+  <div class="wrap">
+    <div class="cta reveal">
+      <span class="eyebrow">Spa Party — $300</span>
+      <h2>Host a spa party at your place</h2>
+      <p>Enjoy a relaxing spa experience brought directly to your home or chosen venue — hosted by a licensed esthetician with guided mini facials and personalized skincare education.</p>
+      <button class="btn btn-primary" data-modal="party-modal">Spa Party Details</button>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap" style="text-align:center;">
+    <span class="eyebrow">Get In Touch</span>
+    <h2 style="margin-bottom:16px;">Ready to book your treatment?</h2>
+    <p style="color:var(--grey); max-width:480px; margin:0 auto 28px;">Book online or reach out with any questions — we serve clients throughout Southern California.</p>
+    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book Now</a>
+      <button class="btn btn-outline" data-modal="contact-modal">Contact Us</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Delicate Skin &amp; Care</div>
+      <p>Mobile esthetics serving Southern California.</p>
+    </div>
+    <div>
+      <div class="footer-brand" style="font-size:1rem;">Explore</div>
+      <p><a href="#services">Services</a></p>
+      <p><a href="#testimonials">Testimonials</a></p>
+      <p><a href="#spa-party">Spa Party</a></p>
+    </div>
+    <div>
+      <div class="footer-brand" style="font-size:1rem;">Book</div>
+      <p><a href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book an Appointment</a></p>
+      <p><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom wrap">© <span id="year"></span> Delicate Skin &amp; Care. All rights reserved.</div>
+</footer>
+
+<!-- Popups -->
+<div class="overlay" id="serviceOverlay">
+  <div class="modal">
+    <button class="modal-close" data-close>✕</button>
+    <div class="service-icon" id="modalIcon">✨</div>
+    <h3 id="modalTitle"></h3>
+    <div class="price" id="modalPrice"></div>
+    <p class="desc" id="modalDesc"></p>
+    <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book This Treatment</a>
+  </div>
+</div>
+
+<div class="overlay" id="esthetician-modal">
+  <div class="modal">
+    <button class="modal-close" data-close>✕</button>
+    <div class="avatar-ring" style="width:100px;height:100px;">
+      <div class="avatar-inner"><div class="avatar-photo" style="font-size:1.8rem;">DS</div></div>
+    </div>
+    <h3 style="margin-top:16px;">Your Licensed Esthetician</h3>
+    <p class="price">Skin &amp; Sculpting Specialist</p>
+    <p class="desc">Bringing spa-quality, results-focused facials and body treatments directly to clients across Southern California. Every appointment is personalized to your skin's needs, using professional-grade products and modern techniques like microcurrent sculpting and LED light therapy.</p>
+    <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Book an Appointment</a>
+  </div>
+</div>
+
+<div class="overlay" id="party-modal">
+  <div class="modal">
+    <button class="modal-close" data-close>✕</button>
+    <div class="service-icon">🎉</div>
+    <h3>Spa Party</h3>
+    <div class="price">$300</div>
+    <p class="desc">Enjoy a relaxing spa experience brought directly to your home or chosen venue. Each event is hosted by a licensed esthetician and includes professional-grade skincare, guided mini facials, personalized skincare education, and product recommendations. Yes — we do group spa parties!</p>
+    <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Inquire About a Spa Party</a>
+  </div>
+</div>
+
+<div class="overlay" id="contact-modal">
+  <div class="modal">
+    <button class="modal-close" data-close>✕</button>
+    <div class="service-icon">💌</div>
+    <h3>Contact Us</h3>
+    <p class="desc">The fastest way to reach us is through our online booking form — tell us what you're interested in and we'll follow up to confirm details and availability.</p>
+    <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener">Open Booking Form</a>
+  </div>
+</div>
+
+<div class="overlay" id="testimonial-modal">
+  <div class="modal">
+    <button class="modal-close" data-close>✕</button>
+    <p class="stars" style="color:#e8a33d; margin-bottom:14px;">★★★★★</p>
+    <p class="desc" id="tModalText"></p>
+    <div class="price" id="tModalName" style="margin-top:8px;"></div>
+  </div>
+</div>
+
+<div class="overlay" id="skin-check-modal">
+  <div class="modal" style="text-align:center;">
+    <button class="modal-close" data-close>✕</button>
+
+    <div id="skinStepCapture">
+      <div class="avatar-ring skin-avatar-ring" style="margin:0 auto 18px;">
+        <div class="avatar-inner">
+          <div class="avatar-photo skin-avatar-photo" id="skinAvatarPhoto">📷</div>
+        </div>
+      </div>
+      <h3>Get Free Skin Tips</h3>
+      <p class="desc" style="color:#736a70;">Upload a selfie for tips personalized to your photo by AI — general suggestions only, never a medical or dermatological diagnosis. Your photo is used only for this one analysis and isn't stored.</p>
+      <input type="file" accept="image/*" capture="user" id="skinSelfieInput" style="display:none;">
+      <input type="file" accept="image/*" id="skinUploadInput" style="display:none;">
+      <button class="btn btn-primary" id="skinTakeSelfieBtn" style="width:100%;">📸 Take a Selfie</button>
+      <button class="btn btn-outline" id="skinUploadBtn" style="width:100%; margin-top:10px;">🖼️ Upload a Photo</button>
+      <button class="btn-skincheck" id="skinSkipBtn" style="margin-top:14px;">Prefer not to share a photo? Quick quiz instead →</button>
+    </div>
+
+    <div id="skinStepAnalyzing" style="display:none;">
+      <div class="avatar-ring skin-avatar-ring" style="margin:0 auto 14px;">
+        <div class="avatar-inner">
+          <div class="avatar-photo skin-avatar-photo" id="skinAvatarPhotoAnalyzing">📷</div>
+        </div>
+      </div>
+      <h3>Analyzing your photo…</h3>
+      <p class="desc" style="color:#736a70;">This usually takes just a few seconds.</p>
+    </div>
+
+    <div id="skinStepError" style="display:none;">
+      <div class="service-icon" style="margin:0 auto 16px;">⚠️</div>
+      <h3>Couldn't analyze that photo</h3>
+      <p class="desc" style="color:#736a70;">Something went wrong reaching our analysis service. You can try again, or just get quick tips instead.</p>
+      <button class="btn btn-primary" id="skinRetryBtn" style="width:100%;">Try Again</button>
+      <button class="btn-skincheck" id="skinFallbackBtn" style="margin-top:14px;">Skip to quick quiz →</button>
+    </div>
+
+    <div id="skinStepConcern" style="display:none;">
+      <div class="avatar-ring skin-avatar-ring" style="margin:0 auto 16px;">
+        <div class="avatar-inner">
+          <div class="avatar-photo skin-avatar-photo" id="skinAvatarPhoto2">📷</div>
+        </div>
+      </div>
+      <h3>What's your main focus today?</h3>
+      <p class="desc" style="color:#736a70;">Pick one to get a few quick tips.</p>
+      <div class="skin-concern-grid" id="skinConcernButtons">
+        <button data-concern="hydration">💧 Hydration</button>
+        <button data-concern="acne">🌿 Acne &amp; Breakouts</button>
+        <button data-concern="aging">⚡ Anti-Aging</button>
+        <button data-concern="brightening">🪞 Brightening</button>
+        <button data-concern="sensitivity">🌸 Sensitivity</button>
+      </div>
+    </div>
+
+    <div id="skinStepTips" style="display:none;">
+      <div class="avatar-ring skin-avatar-ring" style="margin:0 auto 14px;">
+        <div class="avatar-inner">
+          <div class="avatar-photo skin-avatar-photo" id="skinAvatarPhoto3">📷</div>
+        </div>
+      </div>
+      <h3 id="skinTipTitle"></h3>
+      <p class="desc" id="skinTipSummary" style="display:none; color:#736a70;"></p>
+      <p class="desc" id="skinObsLabel" style="display:none; font-weight:600; color:var(--plum-dark); margin-bottom:-8px;">What we noticed</p>
+      <ul class="skin-tip-list" id="skinObservationList" style="display:none;"></ul>
+      <p class="desc" id="skinTipsLabel" style="display:none; font-weight:600; color:var(--plum-dark); margin-bottom:-8px;">What might help</p>
+      <ul class="skin-tip-list" id="skinTipList"></ul>
+      <p class="desc" id="skinTipRecommend" style="display:none; color:#736a70; font-weight:600;"></p>
+      <p class="desc" style="color:#736a70; margin-top:4px;">Want a personalized plan? Our licensed esthetician can tailor a treatment just for you.</p>
+      <a class="btn btn-primary" href="https://tally.so/r/obOxA1" target="_blank" rel="noopener" style="width:100%;">Book a Free Consult</a>
+      <button class="btn-skincheck" id="skinSecondaryAction" style="margin-top:14px;">← Try another concern</button>
+    </div>
+  </div>
+</div>
+
+<!-- Floating promo ad -->
+<div class="float-ad" id="floatAd">
+  <button class="ad-close" id="floatAdClose" aria-label="Dismiss">✕</button>
+  <div class="ad-icon">🎉</div>
+  <div class="ad-body">
+    <h4>Now booking Spa Parties</h4>
+    <p>Bring the spa to your next get-together — hosted by a licensed esthetician.</p>
+    <button class="btn btn-primary" data-modal="party-modal">See Details</button>
+  </div>
+</div>
+
+<!-- Floating chat / scheduling widget -->
+<div class="chat-greet" id="chatGreet">
+  <button class="greet-close" id="chatGreetClose" aria-label="Dismiss">✕</button>
+  👋 Need help booking your facial? Chat with us — it only takes a minute!
+</div>
+
+<button class="chat-fab" id="chatFab" aria-label="Chat to schedule an appointment">
+  <span class="fab-icon">💬<span class="fab-dot"></span></span>
+  <span class="fab-label">Chat with us</span>
+</button>
+
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <div class="avatar-photo">DS</div>
+    <div class="who">
+      <div class="name">Delicate Skin &amp; Care</div>
+      <div class="status">Usually replies within a day</div>
+    </div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat">✕</button>
+  </div>
+  <div id="chatDefaultView">
+    <div class="chat-body" id="chatBody">
+      <div class="chat-msg bot">Hi! 👋 I can help you find the right treatment or get you scheduled. What are you interested in?</div>
+    </div>
+    <div class="chat-quick" id="chatQuick">
+      <button data-reply="services">Browse services</button>
+      <button data-reply="party">Spa party</button>
+      <button data-reply="schedule">Schedule now</button>
+    </div>
+  </div>
+  <div class="chat-frame-wrap" id="chatFrameWrap" style="display:none;">
+    <button class="chat-frame-back" id="chatFrameBack">← Back to chat</button>
+    <iframe src="https://tally.so/embed/obOxA1?hideTitle=1&transparentBackground=1" title="Schedule an appointment"></iframe>
+  </div>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Dark mode toggle
+  const themeToggle = document.getElementById('themeToggle');
+  function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+  const savedTheme = localStorage.getItem('dsc_theme');
+  applyTheme(savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  themeToggle.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem('dsc_theme', next);
+  });
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  function observeReveals() {
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => revealObserver.observe(el));
+  }
+
+  // Cursor-reactive tilt + glow
+  const supportsHover = window.matchMedia('(hover: hover)').matches;
+  function attachTilt(el, max = 7) {
+    el.classList.add('tilt-glow');
+    if (!supportsHover) return;
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width;
+      const py = (e.clientY - r.top) / r.height;
+      el.style.setProperty('--mx', `${px * 100}%`);
+      el.style.setProperty('--my', `${py * 100}%`);
+      const rx = (0.5 - py) * max;
+      const ry = (px - 0.5) * max;
+      el.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+    });
+    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+  }
+
+  // Mobile nav
+  const menuToggle = document.getElementById('menuToggle');
+  const navList = document.getElementById('navList');
+  menuToggle.addEventListener('click', () => navList.classList.toggle('open'));
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+
+  // Services data
+  const services = [
+    { icon: '✨', title: 'Signature Facial', price: '$150', desc: 'A customized facial designed to deeply cleanse, nourish, and restore balance — leaving your skin refreshed, radiant, and glowing.' },
+    { icon: '🌿', title: 'Clarifying Acne Therapy', price: '$165', desc: 'A results-focused treatment for acne-prone skin featuring deep cleansing, extractions, and LED light therapy to promote clarity and balance.' },
+    { icon: '⚡', title: 'Advanced Sculpt & Renew', price: '$200', desc: 'An age-defying facial featuring advanced peptide skincare, collagen-boosting LED light therapy, and microcurrent technology to lift, firm, and rejuvenate the skin.' },
+    { icon: '🪞', title: 'Dermaplane Facial', price: '$150', desc: 'Gently removes dead skin and peach fuzz to reveal a smoother, brighter complexion and enhance product absorption.' },
+    { icon: '💫', title: 'Microcurrent Face Sculpting', price: 'From $400', desc: 'A non-invasive treatment using professional BT-Sculpt microcurrent technology — perfect for sagging skin. Visibly lifts, tones, and contours the face. Packages: 4 sessions — $400, 8 sessions — $800, 10 sessions — $1,000.' },
+    { icon: '🧖', title: 'Body Wrap', price: '$120', desc: 'A professional body wrap designed to help you look instantly more sculpted, tighter, and less bloated. Multiple sessions give the best results.' },
+    { icon: '👁️', title: 'Korean Lash Lift', price: '$120', desc: 'A gentle treatment designed to lift and curl your natural lashes for a more defined, effortless look.' },
+  ];
+
+  const servicesGrid = document.getElementById('servicesGrid');
+  services.forEach((s, i) => {
+    const card = document.createElement('div');
+    card.className = 'service-card' + (i === 0 ? ' featured' : '');
+    card.tabIndex = 0;
+    card.innerHTML = `
+      ${i === 0 ? '<span class="badge">Most popular</span>' : ''}
+      <div class="service-icon">${s.icon}</div>
+      <h3>${s.title}</h3>
+      <div class="price">${s.price}</div>
+      <p>${s.desc.split('.')[0]}.</p>
+      <div class="tap-hint">Tap for details →</div>
+    `;
+    card.addEventListener('click', () => openServiceModal(s));
+    card.addEventListener('keypress', e => { if (e.key === 'Enter') openServiceModal(s); });
+    attachTilt(card);
+    servicesGrid.appendChild(card);
+  });
+
+  const serviceOverlay = document.getElementById('serviceOverlay');
+  function openServiceModal(s) {
+    document.getElementById('modalIcon').textContent = s.icon;
+    document.getElementById('modalTitle').textContent = s.title;
+    document.getElementById('modalPrice').textContent = s.price;
+    document.getElementById('modalDesc').textContent = s.desc;
+    openModal(serviceOverlay);
+  }
+
+  // Testimonials data
+  const testimonials = [
+    { name: 'Jasmine R.', text: 'The mobile facial was such a treat — professional, relaxing, and my skin has never looked better. Booking again for sure!' },
+    { name: 'Maya T.', text: 'The microcurrent sculpting sessions made a visible difference after just a few visits. Highly recommend for anyone wanting a natural lift.' },
+    { name: 'Priya K.', text: 'Hosted a spa party for my birthday and everyone loved it. Relaxing, professional, and so convenient having it at home.' },
+  ];
+  const tGrid = document.getElementById('testimonialsGrid');
+  testimonials.forEach(t => {
+    const card = document.createElement('div');
+    card.className = 't-card';
+    card.tabIndex = 0;
+    card.innerHTML = `
+      <p class="stars">★★★★★</p>
+      <p>"${t.text}"</p>
+      <div class="name">${t.name}</div>
+    `;
+    card.addEventListener('click', () => {
+      document.getElementById('tModalText').textContent = `"${t.text}"`;
+      document.getElementById('tModalName').textContent = t.name;
+      openModal(document.getElementById('testimonial-modal'));
+    });
+    attachTilt(card);
+    tGrid.appendChild(card);
+  });
+
+  // Generic modal open/close
+  function openModal(overlay) {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(overlay) {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-modal]').forEach(btn => {
+    btn.addEventListener('click', () => openModal(document.getElementById(btn.dataset.modal)));
+  });
+  document.querySelectorAll('.overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(overlay); });
+    overlay.querySelector('[data-close]')?.addEventListener('click', () => closeModal(overlay));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.overlay.open').forEach(closeModal);
+  });
+
+  // Skin check: selfie + curated tips (not a real image analysis — general tips only)
+  const skinStepCapture = document.getElementById('skinStepCapture');
+  const skinStepConcern = document.getElementById('skinStepConcern');
+  const skinStepTips = document.getElementById('skinStepTips');
+  const skinStepAnalyzing = document.getElementById('skinStepAnalyzing');
+  const skinStepError = document.getElementById('skinStepError');
+  const skinSelfieInput = document.getElementById('skinSelfieInput');
+  const skinAvatarPhotos = ['skinAvatarPhoto', 'skinAvatarPhoto2', 'skinAvatarPhoto3', 'skinAvatarPhotoAnalyzing'].map(id => document.getElementById(id));
+  let lastSelfieDataUrl = null;
+
+  function showSkinStep(step) {
+    skinStepCapture.style.display = step === 'capture' ? 'block' : 'none';
+    skinStepConcern.style.display = step === 'concern' ? 'block' : 'none';
+    skinStepTips.style.display = step === 'tips' ? 'block' : 'none';
+    skinStepAnalyzing.style.display = step === 'analyzing' ? 'block' : 'none';
+    skinStepError.style.display = step === 'error' ? 'block' : 'none';
+  }
+
+  function setSkinSecondaryAction(mode) {
+    const btn = document.getElementById('skinSecondaryAction');
+    if (mode === 'retake') {
+      btn.textContent = '← Retake photo';
+      btn.onclick = () => showSkinStep('capture');
+    } else {
+      btn.textContent = '← Try another concern';
+      btn.onclick = () => showSkinStep('concern');
+    }
+  }
+
+  // Downscale the selfie client-side before it ever leaves the browser —
+  // keeps the upload small and caps image-token cost on the analysis call.
+  function resizeImage(dataUrl, maxDim) {
+    return new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > maxDim || height > maxDim) {
+          const scale = maxDim / Math.max(width, height);
+          width = Math.round(width * scale);
+          height = Math.round(height * scale);
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', 0.85));
+      };
+      img.onerror = () => resolve(dataUrl);
+      img.src = dataUrl;
+    });
+  }
+
+  const skinUploadInput = document.getElementById('skinUploadInput');
+  document.getElementById('skinTakeSelfieBtn').addEventListener('click', () => skinSelfieInput.click());
+  document.getElementById('skinUploadBtn').addEventListener('click', () => skinUploadInput.click());
+  document.getElementById('skinSkipBtn').addEventListener('click', () => showSkinStep('concern'));
+  document.getElementById('skinRetryBtn').addEventListener('click', () => {
+    if (lastSelfieDataUrl) analyzeSelfie(lastSelfieDataUrl);
+  });
+  document.getElementById('skinFallbackBtn').addEventListener('click', () => showSkinStep('concern'));
+
+  function handleSelfieFile(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async e => {
+      const resized = await resizeImage(e.target.result, 1024);
+      skinAvatarPhotos.forEach(el => {
+        el.style.backgroundImage = `url(${resized})`;
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center';
+        el.textContent = '';
+      });
+      lastSelfieDataUrl = resized;
+      analyzeSelfie(resized);
+    };
+    reader.readAsDataURL(file);
+  }
+  skinSelfieInput.addEventListener('change', () => handleSelfieFile(skinSelfieInput.files[0]));
+  skinUploadInput.addEventListener('change', () => handleSelfieFile(skinUploadInput.files[0]));
+
+  // Real analysis: sends the photo to our serverless function, which calls
+  // Claude's vision API server-side (API key never touches the browser).
+  async function analyzeSelfie(dataUrl) {
+    showSkinStep('analyzing');
+    try {
+      const match = dataUrl.match(/^data:(.*?);base64,(.*)$/);
+      if (!match) throw new Error('Unexpected image format');
+      const [, mediaType, base64] = match;
+      const res = await fetch('/api/analyze-skin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ image: base64, mediaType }),
+      });
+      if (!res.ok) throw new Error('Request failed: ' + res.status);
+      const data = await res.json();
+      renderRealAnalysis(data);
+      showSkinStep('tips');
+    } catch (err) {
+      showSkinStep('error');
+    }
+  }
+
+  function renderRealAnalysis(data) {
+    document.getElementById('skinTipTitle').textContent = "Here's what we noticed";
+
+    const summaryEl = document.getElementById('skinTipSummary');
+    summaryEl.textContent = data.summary || '';
+    summaryEl.style.display = data.summary ? 'block' : 'none';
+
+    const obsLabel = document.getElementById('skinObsLabel');
+    const obsList = document.getElementById('skinObservationList');
+    const hasObs = Array.isArray(data.observations) && data.observations.length > 0;
+    obsList.innerHTML = hasObs ? data.observations.map(o => `<li>${o}</li>`).join('') : '';
+    obsList.style.display = hasObs ? 'flex' : 'none';
+    obsLabel.style.display = hasObs ? 'block' : 'none';
+
+    const tipsLabel = document.getElementById('skinTipsLabel');
+    const hasTips = Array.isArray(data.tips) && data.tips.length > 0;
+    document.getElementById('skinTipList').innerHTML = hasTips ? data.tips.map(t => `<li>${t}</li>`).join('') : '';
+    tipsLabel.style.display = hasTips ? 'block' : 'none';
+
+    const recEl = document.getElementById('skinTipRecommend');
+    if (data.recommended_service) {
+      recEl.textContent = `Based on this, our ${data.recommended_service} could be a great fit.`;
+      recEl.style.display = 'block';
+    } else {
+      recEl.style.display = 'none';
+    }
+
+    setSkinSecondaryAction('retake');
+  }
+
+  const skinTips = {
+    hydration: {
+      title: 'Hydration Tips',
+      tips: [
+        'Drink water consistently throughout the day, not all at once.',
+        'Layer a hyaluronic-acid serum onto damp skin, morning and night.',
+        'Our Signature Facial deeply nourishes and restores moisture balance.',
+      ],
+    },
+    acne: {
+      title: 'Acne & Breakout Tips',
+      tips: [
+        'Cleanse twice daily with a gentle, non-stripping cleanser.',
+        'Avoid over-exfoliating — it can actually trigger more breakouts.',
+        'Our Clarifying Acne Therapy combines extractions with LED light therapy for clearer skin.',
+      ],
+    },
+    aging: {
+      title: 'Anti-Aging Tips',
+      tips: [
+        'Never skip SPF — daily sun protection is the #1 anti-aging step.',
+        'Add a peptide or retinol serum a few nights a week.',
+        'Our Advanced Sculpt & Renew facial uses microcurrent and peptides to lift and firm.',
+      ],
+    },
+    brightening: {
+      title: 'Brightening Tips',
+      tips: [
+        'A vitamin C serum in the morning helps fade dullness and even tone.',
+        'Gently exfoliate 2–3 times a week to reveal brighter skin underneath.',
+        'A Dermaplane Facial instantly brightens by removing dead skin and peach fuzz.',
+      ],
+    },
+    sensitivity: {
+      title: 'Sensitivity Tips',
+      tips: [
+        'Stick to fragrance-free, minimal-ingredient products.',
+        'Patch test new products before applying to your full face.',
+        'Every treatment is customized to sensitive skin — just let your esthetician know.',
+      ],
+    },
+  };
+
+  document.getElementById('skinConcernButtons').addEventListener('click', e => {
+    const btn = e.target.closest('button[data-concern]');
+    if (!btn) return;
+    const data = skinTips[btn.dataset.concern];
+    document.getElementById('skinTipTitle').textContent = data.title;
+    document.getElementById('skinTipSummary').style.display = 'none';
+    document.getElementById('skinObsLabel').style.display = 'none';
+    document.getElementById('skinObservationList').style.display = 'none';
+    document.getElementById('skinTipsLabel').style.display = 'none';
+    document.getElementById('skinTipList').innerHTML = data.tips.map(t => `<li>${t}</li>`).join('');
+    document.getElementById('skinTipRecommend').style.display = 'none';
+    setSkinSecondaryAction('concern');
+    showSkinStep('tips');
+  });
+
+  // Floating promo ad
+  const floatAd = document.getElementById('floatAd');
+  if (!localStorage.getItem('dsc_ad_dismissed')) {
+    setTimeout(() => floatAd.classList.add('show'), 2500);
+  } else {
+    floatAd.remove();
+  }
+  document.getElementById('floatAdClose').addEventListener('click', () => {
+    floatAd.classList.remove('show');
+    localStorage.setItem('dsc_ad_dismissed', '1');
+    setTimeout(() => floatAd.remove(), 400);
+  });
+
+  // Floating chat / scheduling widget
+  const chatFab = document.getElementById('chatFab');
+  const chatPanel = document.getElementById('chatPanel');
+  const chatClose = document.getElementById('chatClose');
+  const chatBody = document.getElementById('chatBody');
+  const chatQuick = document.getElementById('chatQuick');
+  const chatDefaultView = document.getElementById('chatDefaultView');
+  const chatFrameWrap = document.getElementById('chatFrameWrap');
+  const chatFrameBack = document.getElementById('chatFrameBack');
+
+  chatFab.addEventListener('click', () => {
+    chatPanel.classList.toggle('open');
+    chatGreet.classList.remove('show');
+  });
+  chatClose.addEventListener('click', () => chatPanel.classList.remove('open'));
+
+  // Greeting tooltip
+  const chatGreet = document.getElementById('chatGreet');
+  const chatGreetClose = document.getElementById('chatGreetClose');
+  if (!sessionStorage.getItem('dsc_greet_dismissed')) {
+    setTimeout(() => chatGreet.classList.add('show'), 4000);
+  }
+  chatGreetClose.addEventListener('click', e => {
+    e.stopPropagation();
+    chatGreet.classList.remove('show');
+    sessionStorage.setItem('dsc_greet_dismissed', '1');
+  });
+  chatGreet.addEventListener('click', () => {
+    chatPanel.classList.add('open');
+    chatGreet.classList.remove('show');
+    sessionStorage.setItem('dsc_greet_dismissed', '1');
+  });
+
+  function addChatMsg(text, from) {
+    const msg = document.createElement('div');
+    msg.className = `chat-msg ${from}`;
+    msg.textContent = text;
+    chatBody.appendChild(msg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function showBookingFrame() {
+    chatDefaultView.style.display = 'none';
+    chatFrameWrap.style.display = 'flex';
+  }
+
+  const chatReplies = {
+    services: {
+      user: 'Browse services',
+      bot: 'We offer facials from $150, microcurrent sculpting from $400, body wraps, lash lifts, and more. Want to see full pricing or jump straight to booking?',
+      quick: [
+        { label: 'See all services', action: () => { chatPanel.classList.remove('open'); document.getElementById('services').scrollIntoView({ behavior: 'smooth' }); } },
+        { label: 'Schedule now', action: showBookingFrame },
+      ],
+    },
+    party: {
+      user: 'Spa party',
+      bot: 'Our Spa Party ($300) brings a licensed esthetician to your home or venue with guided mini facials for your group. Want the details or ready to book?',
+      quick: [
+        { label: 'View spa party details', action: () => openModal(document.getElementById('party-modal')) },
+        { label: 'Schedule now', action: showBookingFrame },
+      ],
+    },
+    schedule: {
+      user: 'Schedule now',
+      bot: "Great — I'll pull up our booking form right here so you can pick a time.",
+      quick: [],
+      after: showBookingFrame,
+    },
+  };
+
+  chatQuick.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-reply]');
+    if (!btn) return;
+    const reply = chatReplies[btn.dataset.reply];
+    if (!reply) return;
+    addChatMsg(reply.user, 'user');
+    chatQuick.innerHTML = '';
+    setTimeout(() => {
+      addChatMsg(reply.bot, 'bot');
+      (reply.quick || []).forEach(q => {
+        const b = document.createElement('button');
+        b.textContent = q.label;
+        b.addEventListener('click', q.action);
+        chatQuick.appendChild(b);
+      });
+      if (reply.after) setTimeout(reply.after, 500);
+    }, 400);
+  });
+
+  chatFrameBack.addEventListener('click', () => {
+    chatFrameWrap.style.display = 'none';
+    chatDefaultView.style.display = 'block';
+  });
+
+  observeReveals();
+</script>
+
+</body>
+</html>
